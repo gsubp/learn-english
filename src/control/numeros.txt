@@ -1,0 +1,21 @@
+
+UM src/images/numeros/num11.png
+UM src/images/numeros/num12.png
+DOIS src/images/numeros/num21.png
+DOIS src/images/numeros/num22.png
+TRES src/images/numeros/num31.png
+TRES src/images/numeros/num32.png
+QUATRO src/images/numeros/num41.png
+QUATRO src/images/numeros/num42.png
+CINCO src/images/numeros/num51.png
+CINCO src/images/numeros/num52.png
+SEIS src/images/numeros/num61.png
+SEIS src/images/numeros/num62.png
+SETE src/images/numeros/num71.png
+SETE src/images/numeros/num72.png
+OITO src/images/numeros/num81.png
+OITO src/images/numeros/num82.png
+NOVE src/images/numeros/num91.png
+NOVE src/images/numeros/num92.png
+DEZ src/images/numeros/num101.png
+DEZ src/images/numeros/num102.png
