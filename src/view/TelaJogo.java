@@ -24,10 +24,10 @@ public class TelaJogo extends JFrame{
 	}
 	public void trocaPanel(JPanel panel) {
 		this.panel.setVisible(false);
-		remove(this.panel);
-		this.panel=null;
+//		remove(this.panel);
+//		this.panel=null;
 		this.panel=panel;
 		add(this.panel);
-		System.gc();
+//		System.gc();
 	}		
 }

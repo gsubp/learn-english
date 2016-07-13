@@ -19,6 +19,10 @@ public class Jogador{
 		return tentativas;
 	}
 	
+	public void zeraTentativas(){
+		this.tentativas=0;
+	}
+	
 	public void incrementaTentavias(){
 		this.tentativas++;
 	}

@@ -23,8 +23,6 @@ public class Jogo extends JPanel implements Runnable{
 	private JogoHandler jogoHandler;
 	private int time;
 	private boolean condicao;
-	private JButton novoButton;
-	private JButton recomecaButton;
 	
 	public Jogo(String modo){
 		setLayout(null);
@@ -32,22 +30,11 @@ public class Jogo extends JPanel implements Runnable{
 		time=0;
 		condicao=true;
 		setBackground(Color.BLACK);
-		novoButton = new JButton("Novo Jogo");
-		novoButton.setFont(new Font("Arial", Font.BOLD, 20));
-		novoButton.setBounds(25, 5, 150, 35);
-		add(novoButton);
-		recomecaButton = new JButton("Recomeçar");
-		recomecaButton.setFont(new Font("Arial", Font.BOLD, 20));
-		recomecaButton.setBounds(200, 5, 150, 35);
-		add(recomecaButton);
-		
 		cartasPanel = new JPanel();
 		cartasPanel.setBackground(Color.BLACK);
 		cartasPanel.setBounds(0, 50, 800, 525);
 		cartasPanel.setLayout(new GridLayout(4,5));
-		cartasPanel.setVisible(true);
-
-		
+		cartasPanel.setVisible(true);		
 		add(cartasPanel);
 		cartas = new ArrayList<>();
 		jogoHandler = new JogoHandler(this,modo);		
@@ -106,7 +93,8 @@ public class Jogo extends JPanel implements Runnable{
 	private void fim() {
 		jogoHandler.acabarPartida();
 		condicao=false;
-		Thread.yield();		
+		Thread.yield();
+		jogoHandler.voltaModo();
 	}
 	
 }
