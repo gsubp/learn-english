@@ -14,7 +14,7 @@ public class Carta extends JButton{
 		fundo = new ImageIcon("src/images/jogo/fundoCarta.png");
 		face = new ImageIcon(localFace);
 		setIcon(fundo);
-		setBorderPainted(true);
+//		setBorderPainted(true);
 		setVisible(true);
 	}
 

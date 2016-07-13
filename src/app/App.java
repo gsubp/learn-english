@@ -4,7 +4,7 @@ import model.Jogador;
 import view.Inicio;
 import view.TelaJogo;
 
-public class App extends Thread{
+public class App{
 	public static TelaJogo jogo = new TelaJogo(new Inicio());
 	public static Jogador jogador = new Jogador("");
 	
