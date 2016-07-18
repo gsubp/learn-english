@@ -10,13 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
-
-import control.InicioHandler;
-
 
 public class Inicio extends JPanel{
 	private BufferedImage logo;	
@@ -32,19 +26,18 @@ public class Inicio extends JPanel{
 			e.printStackTrace();
 		}
 		setBackground(Color.BLACK);
+		
 		playButton = new JButton(new ImageIcon("src/images/inicio/playButton.png"));
 		playButton.setBorder(null); //botao sem borda
 		playButton.setVisible(true);
 		playButton.setBounds(325,275,150,100);
 		playButton.setCursor(new Cursor(12)); // hand cursor
-		playButton.addActionListener(new InicioHandler(this));
 		add(playButton);		
 		sairButton = new JButton(new ImageIcon("src/images/inicio/sairButton.png"));
 		sairButton.setBorder(null);
 		sairButton.setVisible(true);
 		sairButton.setBounds(325,400,150,100);
 		sairButton.setCursor(new Cursor(12));
-		sairButton.addActionListener(new InicioHandler(this));
 		add(sairButton);
 		setVisible(true);
 	}

@@ -6,11 +6,19 @@ import java.awt.event.ActionListener;
 import app.App;
 import view.Jogo;
 import view.ModoDeJogo;
+import view.TelaJogo;
 
 public class ModoHandler implements ActionListener {
 	private ModoDeJogo modo;
-	public ModoHandler(ModoDeJogo modo) {
+	private TelaJogoController controller;
+	
+	
+	public ModoHandler(ModoDeJogo modo, TelaJogoController controller) {
 		this.modo=modo;
+		this.controller=controller;
+		modo.getAnimalButton().addActionListener(this);
+		modo.getCorButton().addActionListener(this);
+		modo.getNumeroButton().addActionListener(this);
 	}
 
 	@Override
@@ -23,10 +31,7 @@ public class ModoHandler implements ActionListener {
 			arquivo=""+"cores";
 		if(e.getSource()==modo.getNumeroButton())
 			arquivo=""+"numeros";
-		Jogo jogo = new Jogo(arquivo);
-		App.jogo.trocaPanel(jogo);
-		Thread t = new Thread(jogo);
-		t.start();
+		controller.iniciaJogo(arquivo);
 	}
 
 }

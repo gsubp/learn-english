@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.StringTokenizer;
 
@@ -20,14 +22,21 @@ public class JogoHandler implements ActionListener{
 	private String modo;
 	private Carta cartaUm;
 	private Carta cartaDois;
-	
-	public JogoHandler(Jogo jogo, String modo) {
+	private TelaJogoController controller;
+	public JogoHandler(Jogo jogo, String modo, TelaJogoController controller) {
 		super();
 		this.jogo = jogo;
 		this.modo=modo;
-		carregaCartas();		
+		this.controller=controller;
+		jogo.setCartas(new ArrayList<>());
+		carregaCartas();
+		Collections.shuffle(jogo.getCartas());
+		for(Carta carta: jogo.getCartas()){
+			jogo.getCartasPanel().add(carta);
+		}
 		for(Carta carta:jogo.getCartas()){
 			carta.addActionListener(this);
+			carta.viraFace();
 		}		
 		cartaUm = null;
 		cartaDois = null;
@@ -89,14 +98,7 @@ public class JogoHandler implements ActionListener{
 		}
 	}
 
-	public void acabarPartida() {
-		JOptionPane.showMessageDialog(null, "Parabéns "+App.jogador.getNome()+", você conseguiu achar todos os pares em "+App.jogador.getTentativas()+" tentativas e em "+jogo.getTime()+" segundos!");
-		App.jogador.zeraTentativas();
-	}
 	
-	public void voltaModo(){
-		App.jogo.trocaPanel(new ModoDeJogo());
-	}
 	
 	
 	

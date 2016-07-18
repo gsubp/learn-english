@@ -9,9 +9,8 @@ import javax.swing.JPanel;
 public class TelaJogo extends JFrame{
 	private JPanel panel;
 	
-	public TelaJogo(JPanel panel){
+	public TelaJogo(){
 		setBackground(Color.BLACK);
-		this.panel=panel;
 		setSize(800,600);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -22,9 +21,14 @@ public class TelaJogo extends JFrame{
 	public JPanel getPanel() {
 		return panel;
 	}
+	
 	public void trocaPanel(JPanel panel) {
-		this.panel.setVisible(false);		
-		this.panel=panel;
+		if(this.panel==null)
+			this.panel=panel;
+		else{		
+			this.panel.setVisible(false);
+			this.panel=panel;
+		}
 		add(this.panel);
 	}		
 }

@@ -10,9 +10,11 @@ import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import app.App;
 import control.JogoHandler;
+import control.TelaJogoController;
 import model.Carta;
 import model.Jogador;
 
@@ -20,11 +22,12 @@ public class Jogo extends JPanel implements Runnable{
 	private ArrayList<Carta> cartas;
 	private int pares;
 	private JPanel cartasPanel;
-	private JogoHandler jogoHandler;
+	private TelaJogoController controller;
 	private int time;
 	private boolean condicao;
 	
-	public Jogo(String modo){
+	public Jogo(TelaJogoController controller){
+		this.controller=controller;
 		setLayout(null);
 		pares=10;
 		time=0;
@@ -36,13 +39,6 @@ public class Jogo extends JPanel implements Runnable{
 		cartasPanel.setLayout(new GridLayout(4,5));
 		cartasPanel.setVisible(true);		
 		add(cartasPanel);
-		cartas = new ArrayList<>();
-		jogoHandler = new JogoHandler(this,modo);		
-		Collections.shuffle(cartas);
-		for(Carta carta: cartas){
-			cartasPanel.add(carta);
-		}
-		
 	}
 	
 	public void paint(Graphics g) {
@@ -78,7 +74,11 @@ public class Jogo extends JPanel implements Runnable{
 	public void run() {
 		while(condicao){
 			try {
-				
+				if(time==5){
+					for(Carta carta : cartas){
+						carta.viraFundo();
+					}
+				}
 				repaint();
 				if(pares==0)
 					fim();			
@@ -91,10 +91,14 @@ public class Jogo extends JPanel implements Runnable{
 		}		
 	}	
 	private void fim() {
-		jogoHandler.acabarPartida();
+		controller.acabarPartida();
 		condicao=false;
 		Thread.yield();
-		jogoHandler.voltaModo();
+		controller.voltaModo();
+	}
+
+	public JPanel getCartasPanel() {
+		return cartasPanel;
 	}
 	
 }
