@@ -28,7 +28,7 @@ public class InicioHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==inicio.getPlayButton())
-			controller.iniciaModo();
+			controller.modo();
 		if(e.getSource()==inicio.getSairButton())
 			System.exit(0);
 		if(e.getSource()==inicio.getConfigButton())

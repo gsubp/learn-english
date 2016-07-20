@@ -6,36 +6,29 @@ import app.App;
 import view.Inicio;
 import view.ModoDeJogo;
 import view.SinglePlayer;
-import view.TelaJogo;
 
 public class TelaJogoController{
-	private TelaJogo tela;
 	private Inicio inicio;
 	private ModoDeJogo modo;
 	private SinglePlayer single;
 	private Thread thread;
 	private SinglePlayerController singleController;
 	
-	public TelaJogoController(TelaJogo tela, Inicio inicio, ModoDeJogo modo) {
+	public TelaJogoController(Inicio inicio, ModoDeJogo modo) {
 		super();
-		this.tela = tela;
 		this.inicio = inicio;
 		this.modo = modo;
-		iniciaTela();	
+		inicio();
 	}
 
-	public void iniciaTela(){
-		tela.trocaPanel(inicio);
-	}
-	
-	public void iniciaModo(){
-		tela.setPanel(modo);
+	public void inicio() {
+		inicio.setVisible(true);		
 	}
 
-	public void iniciaJogo(String modo) {
-		tela.setVisible(false);
+	public void iniciaJogo(String tipo) {
+		modo.setVisible(false);
 		single = new SinglePlayer(800, 600, this);
-		singleController = new SinglePlayerController(single,modo,this);	
+		singleController = new SinglePlayerController(single,tipo,this);	
 		thread = new Thread(single);
 		thread.start();
 	}
@@ -47,7 +40,11 @@ public class TelaJogoController{
 		single=null;
 		thread=null;
 		System.gc();
-		tela.setVisible(true);
-		iniciaModo();
+		modo();
+	}
+
+	public void modo() {
+		modo.setVisible(true);
+		
 	}
 }

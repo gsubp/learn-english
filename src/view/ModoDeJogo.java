@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.Color;
@@ -8,16 +9,23 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ModoDeJogo extends JPanel{
+public class ModoDeJogo extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton numeroButton;
 	private JButton animalButton;
 	private JButton corButton;
 	private BufferedImage modo;
+	private JPanel panel;
 	
 	public ModoDeJogo() {
+		panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		panel.setSize(800, 600);
+		panel.setLayout(null);
+		setSize(800, 600);
 		setBackground(Color.BLACK);
 
 		try{
@@ -28,25 +36,29 @@ public class ModoDeJogo extends JPanel{
 		}
 		
 		animalButton = new JButton(new ImageIcon("src/images/modo/animaisButton.png"));
-		animalButton.setBounds(300, 250, 200,75);
+		animalButton.setBounds(590, 250, 200,75);
 		animalButton.setBorder(null);
 		animalButton.setCursor(new Cursor(12));
 		animalButton.setVisible(true);
 		corButton = new JButton(new ImageIcon("src/images/modo/coresButton.png"));
-		corButton.setBounds(300, 350, 200, 75);		
+		corButton.setBounds(590, 350, 200, 75);		
 		corButton.setBorder(null);
 		corButton.setCursor(new Cursor(12));
 		corButton.setVisible(true);
 		numeroButton = new JButton(new ImageIcon("src/images/modo/numerosButton.png"));
-		numeroButton.setBounds(300, 450, 200, 75);
+		numeroButton.setBounds(590, 450, 200, 75);
 		numeroButton.setBorder(null);
 		numeroButton.setCursor(new Cursor(12));
 		numeroButton.setVisible(true);
 		setLayout(null);
-		add(animalButton);
-		add(corButton);
-		add(numeroButton);		
-		setVisible(true);
+		panel.add(animalButton);
+		panel.add(corButton);
+		panel.add(numeroButton);	
+		add(panel);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setResizable(false);
+		setVisible(false);
 	}
 
 	@Override

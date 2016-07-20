@@ -2,10 +2,7 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import app.App;
 import view.ModoDeJogo;
-import view.TelaJogo;
 
 public class ModoHandler implements ActionListener {
 	private ModoDeJogo modo;
