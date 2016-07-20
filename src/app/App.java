@@ -1,8 +1,10 @@
 package app;
+import control.ConstriurHandler;
 import control.InicioHandler;
 import control.ModoHandler;
 import control.TelaJogoController;
 import model.Jogador;
+import view.Construir;
 import view.Inicio;
 import view.ModoDeJogo;
 import view.TelaJogo;
@@ -16,5 +18,7 @@ public class App{
 		TelaJogoController controller = new TelaJogoController(tela, inicio, modo);
 		InicioHandler inicioHandler = new InicioHandler(inicio,controller);
 		ModoHandler modoHandler = new ModoHandler(modo,controller);
+		Construir c = new Construir();
+		ConstriurHandler ch = new ConstriurHandler(c);
 	}
 }

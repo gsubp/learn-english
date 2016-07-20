@@ -16,6 +16,7 @@ public class Inicio extends JPanel{
 	private BufferedImage logo;	
 	private JButton playButton;
 	private JButton sairButton;
+	private JButton configButton;
 	
 	public Inicio() {
 		setLayout(null);
@@ -39,6 +40,12 @@ public class Inicio extends JPanel{
 		sairButton.setBounds(325,400,150,100);
 		sairButton.setCursor(new Cursor(12));
 		add(sairButton);
+		configButton = new JButton(new ImageIcon("src/images/inicio/configButton.png"));
+		configButton.setBorder(null);
+		configButton.setCursor(new Cursor(12));
+		configButton.setBounds(650, 450, 128, 128);
+		configButton.setVisible(true);
+		add(configButton);
 		setVisible(true);
 	}
 
@@ -55,6 +62,10 @@ public class Inicio extends JPanel{
 		// TODO Auto-generated method stub
 		super.paint(g);
 		g.drawImage(logo,0, 50,null);
+	}
+
+	public JButton getConfigButton() {
+		return configButton;
 	}
 	
 	

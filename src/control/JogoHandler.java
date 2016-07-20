@@ -7,10 +7,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Observable;
 import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
+
+import org.jdom2.Element;
 
 import app.App;
 import model.Carta;
@@ -43,18 +46,9 @@ public class JogoHandler implements ActionListener{
 	}
 	
 	public void carregaCartas(){
-		try{			
-			InputStream file = getClass().getResourceAsStream(modo+".txt");
-			BufferedReader bufferFile = new BufferedReader(new InputStreamReader(file));
-			String linha;
-			StringTokenizer st;
-			linha=bufferFile.readLine();			
-			while((linha=bufferFile.readLine())!=null){				
-				st = new StringTokenizer(linha);
-				jogo.getCartas().add(new Carta(st.nextToken(),st.nextToken()));
-			}
-		}
-		catch(Exception e){}
+		List<Element> memoria = JogoXML.lerXML(modo);
+		for(Element e : memoria)
+			jogo.getCartas().add(new Carta(e.getChildText("Conteudo"), e.getChildText("face")));
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import view.Configuracao;
 import view.Inicio;
 
 public class InicioHandler implements ActionListener {
@@ -13,16 +15,17 @@ public class InicioHandler implements ActionListener {
 		this.inicio=inicio;
 		this.controller=controller;
 		inicio.getPlayButton().addActionListener(this);
-		inicio.getSairButton().addActionListener(this);		
+		inicio.getSairButton().addActionListener(this);	
+		inicio.getConfigButton().addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==inicio.getPlayButton()){
+		if(e.getSource()==inicio.getPlayButton())
 			controller.iniciaModo();
-			System.out.println("oi");
-		}
 		if(e.getSource()==inicio.getSairButton())
 			System.exit(0);
+		if(e.getSource()==inicio.getConfigButton())
+			new Configuracao();
 	}
 
 }
