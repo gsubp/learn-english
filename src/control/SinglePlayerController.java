@@ -2,42 +2,33 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Observable;
-import java.util.StringTokenizer;
-
 import javax.swing.JOptionPane;
-
 import org.jdom2.Element;
-
 import app.App;
 import model.Carta;
-import view.Jogo;
-import view.ModoDeJogo;
+import view.SinglePlayer;
 
-public class JogoHandler implements ActionListener{
-	private Jogo jogo;
+public class SinglePlayerController implements ActionListener{
+	private SinglePlayer singlePlayer;
 	private String modo;
 	private Carta cartaUm;
 	private Carta cartaDois;
 	private TelaJogoController controller;
-	public JogoHandler(Jogo jogo, String modo, TelaJogoController controller) {
+	public SinglePlayerController(SinglePlayer singlePlayer, String modo, TelaJogoController controller) {
 		super();
-		this.jogo = jogo;
+		this.singlePlayer = singlePlayer;
 		this.modo=modo;
 		this.controller=controller;
-		jogo.setCartas(new ArrayList<>());
+		singlePlayer.setCartas(new ArrayList<>());
 		carregaCartas();
-		Collections.shuffle(jogo.getCartas());
-		for(Carta carta: jogo.getCartas()){
-			jogo.getCartasPanel().add(carta);
+		Collections.shuffle(singlePlayer.getCartas());
+		for(Carta carta: singlePlayer.getCartas()){
+			singlePlayer.getCartasPanel().add(carta);
 		}
-		for(Carta carta:jogo.getCartas()){
+		for(Carta carta:singlePlayer.getCartas()){
 			carta.addActionListener(this);
 			carta.viraFace();
 		}		
@@ -48,7 +39,7 @@ public class JogoHandler implements ActionListener{
 	public void carregaCartas(){
 		List<Element> memoria = JogoXML.lerXML(modo);
 		for(Element e : memoria)
-			jogo.getCartas().add(new Carta(e.getChildText("Conteudo"), e.getChildText("face")));
+			singlePlayer.getCartas().add(new Carta(e.getChildText("Conteudo"), e.getChildText("face")));
 	}
 
 	@Override
@@ -76,7 +67,7 @@ public class JogoHandler implements ActionListener{
 					cartaDois.setEnabled(false);
 					cartaUm=null;
 					cartaDois=null;
-					jogo.setPares(jogo.getPares()-1);
+					singlePlayer.setPares(singlePlayer.getPares()-1);
 					App.jogador.incrementaTentavias();
 				}
 				else{

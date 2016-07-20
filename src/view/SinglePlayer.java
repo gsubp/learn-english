@@ -1,24 +1,19 @@
 package view;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.Collections;
 
-import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import app.App;
-import control.JogoHandler;
 import control.TelaJogoController;
 import model.Carta;
-import model.Jogador;
 
-public class Jogo extends JPanel implements Runnable{
+public class SinglePlayer extends JFrame implements Runnable{
 	private ArrayList<Carta> cartas;
 	private int pares;
 	private JPanel cartasPanel;
@@ -26,27 +21,48 @@ public class Jogo extends JPanel implements Runnable{
 	private int time;
 	private boolean condicao;
 	
-	public Jogo(TelaJogoController controller){
+	public SinglePlayer(int largura, int altura, TelaJogoController controller) {
+		int linha=0;
+		int coluna=0;
 		this.controller=controller;
+		setSize(largura, altura);
+		if(largura==800 && altura==600){
+			linha=4;
+			coluna=5;
+			pares=10;
+		}
+		if(largura==1024 && altura==768){
+			linha=5;
+			coluna=6;
+			pares=15;
+		}
+		if(largura==1280 && altura==768){
+			linha=6;
+			coluna=8;
+			pares=24;
+		}
 		setLayout(null);
-		pares=10;
 		time=0;
 		condicao=true;
 		setBackground(Color.BLACK);
 		cartasPanel = new JPanel();
 		cartasPanel.setBackground(Color.BLACK);
-		cartasPanel.setBounds(0, 50, 800, 525);
-		cartasPanel.setLayout(new GridLayout(4,5));
+		cartasPanel.setBounds(0, 50, 160*coluna, 125*linha);
+		cartasPanel.setLayout(new GridLayout(linha,coluna));
 		cartasPanel.setVisible(true);		
 		add(cartasPanel);
+		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.BOLD,25));
-		g.drawString("Tempo: "+time+"s", 625,35);
-		g.drawString("Tentativas: "+App.jogador.getTentativas(), 425, 35);
+		g.drawString("Tempo: "+time+"s", 625,60);
+		g.drawString("Tentativas: "+App.jogador.getTentativas(), 425, 60);
 		incrementaTempo(getTime()+1);
 	}
 	public ArrayList<Carta> getCartas() {
@@ -94,13 +110,9 @@ public class Jogo extends JPanel implements Runnable{
 		controller.acabarPartida();
 		condicao=false;
 		Thread.yield();
-		controller.voltaModo();
 	}
 
 	public JPanel getCartasPanel() {
 		return cartasPanel;
 	}
-	
 }
-
-	

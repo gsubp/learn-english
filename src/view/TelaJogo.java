@@ -22,6 +22,13 @@ public class TelaJogo extends JFrame{
 		return panel;
 	}
 	
+	public void setPanel(JPanel panel){
+		this.panel.setVisible(false);
+		this.panel=null;
+		this.panel=panel;
+		add(this.panel);
+	}
+	
 	public void trocaPanel(JPanel panel) {
 		if(this.panel==null)
 			this.panel=panel;
