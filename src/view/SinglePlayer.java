@@ -10,18 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import app.App;
-import control.TelaJogoController;
+import control.Controller;
 import model.Carta;
 
 public class SinglePlayer extends JFrame implements Runnable{
 	private ArrayList<Carta> cartas;
 	private int pares;
 	private JPanel cartasPanel;
-	private TelaJogoController controller;
+	private Controller controller;
 	private int time;
 	private boolean condicao;
 	
-	public SinglePlayer(int largura, int altura, TelaJogoController controller) {
+	public SinglePlayer(int largura, int altura, Controller controller) {
 		int linha=0;
 		int coluna=0;
 		this.controller=controller;
@@ -62,7 +62,7 @@ public class SinglePlayer extends JFrame implements Runnable{
 		g.setColor(Color.RED);
 		g.setFont(new Font("Arial", Font.BOLD,25));
 		g.drawString("Tempo: "+time+"s", 625,60);
-		g.drawString("Tentativas: "+App.jogador.getTentativas(), 425, 60);
+		g.drawString("Tentativas: "+App.jogador1.getTentativas(), 425, 60);
 		incrementaTempo(getTime()+1);
 	}
 	public ArrayList<Carta> getCartas() {

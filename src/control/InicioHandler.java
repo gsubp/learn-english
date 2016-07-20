@@ -9,11 +9,11 @@ import view.Inicio;
 
 public class InicioHandler implements ActionListener {
 	private Inicio inicio;
-	private TelaJogoController controller;
+	private Controller controller;
 	private Creditos cr;
 	private Configuracao config;
 	
-	public InicioHandler(Inicio inicio, TelaJogoController controller, Creditos cr, Configuracao config) {
+	public InicioHandler(Inicio inicio, Controller controller, Creditos cr, Configuracao config) {
 		super();
 		this.inicio=inicio;
 		this.controller=controller;

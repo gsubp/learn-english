@@ -16,8 +16,8 @@ public class SinglePlayerController implements ActionListener{
 	private String modo;
 	private Carta cartaUm;
 	private Carta cartaDois;
-	private TelaJogoController controller;
-	public SinglePlayerController(SinglePlayer singlePlayer, String modo, TelaJogoController controller) {
+	private Controller controller;
+	public SinglePlayerController(SinglePlayer singlePlayer, String modo, Controller controller) {
 		super();
 		this.singlePlayer = singlePlayer;
 		this.modo=modo;
@@ -68,7 +68,7 @@ public class SinglePlayerController implements ActionListener{
 					cartaUm=null;
 					cartaDois=null;
 					singlePlayer.setPares(singlePlayer.getPares()-1);
-					App.jogador.incrementaTentavias();
+					App.jogador1.incrementaTentavias();
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Errou");
@@ -76,7 +76,7 @@ public class SinglePlayerController implements ActionListener{
 					cartaDois.viraFundo();
 					cartaUm=null;
 					cartaDois=null;
-					App.jogador.incrementaTentavias();
+					App.jogador1.incrementaTentavias();
 				}
 			}
 			
